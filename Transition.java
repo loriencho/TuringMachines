@@ -3,12 +3,12 @@ public class Transition {
     private char tapeSymbol;
     private State nextState;
     private char writeChar;
-    private String direction;
+    private char direction;
 
-    public Transition(char input, char tapeSymbol, State nextState, char writeChar, String direction){
+    public Transition(char input, char tapeSymbol, State nextState, char writeChar, char direction){
         this.input = input;
         this.tapeSymbol = tapeSymbol;
-        this.nextState = nextState,
+        this.nextState = nextState;
         this.writeChar = writeChar;
         this.direction = direction; 
     }
@@ -29,7 +29,7 @@ public class Transition {
         return writeChar;
     }
 
-    public String getDirection() {
+    public char getDirection() {
         return direction;
     }
     

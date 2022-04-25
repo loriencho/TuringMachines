@@ -12,8 +12,8 @@ public class Tape{
         } 
     }
 
-    public void read(){
-        tape.get(pos);
+    public char read(){
+        return tape.get(pos);
     }
 
     public void moveLeft(){
