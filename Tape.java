@@ -1,11 +1,10 @@
-import java.util.Deque;
-import java.util.ArrayDeque;
+import java.util.ArrayList;
 public class Tape{
-    public Deque<Character> tape;
+    public ArrayList<Character> tape;
     private int pos = 0;
 
     public Tape(String input){
-        Deque<Character> tape = new ArrayDeque<Character>();
+        ArrayList<Character> tape = new ArrayList<Character>();
         for(char ch : input.toCharArray()){
             tape.add(ch);
         } 
@@ -18,9 +17,8 @@ public class Tape{
     }
 
     public void goRight(){
-        if (pos == (tape.size() - 1))
-            tape.addLast(null);
-            else pos++;
+        tape.add(null);
+        pos++;
     }
 
     public String getOutputString(){

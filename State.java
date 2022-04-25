@@ -9,4 +9,15 @@ public class State{
             this.transitions = transitions;
             this.isTerminalState = isTerminalState;
     }
-}
+
+    public String getName() {
+        return name;
+    }
+
+    public Transition[] getTransitions() {
+        return transitions;
+    }
+
+    public boolean isTerminalState() {
+        return isTerminalState;
+    }
