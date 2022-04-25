@@ -1,31 +1,33 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 public class Tape{
-    public ArrayList<Character> tape;
+    public HashMap<Integer, Character> tape;
     private int pos = 0;
+    private int startPos = 0;
 
     public Tape(String input){
-        ArrayList<Character> tape = new ArrayList<Character>();
+        HashMap<Integer, Character> tape = new HashMap<Integer, Character>();
         for(char ch : input.toCharArray()){
-            tape.add(ch);
+            tape.put(pos, ch);
+            pos++;
         } 
     }
 
     public void goLeft(){
         if (pos == 0)
-            tape.addFirst(null);
-        else pos--;
+            startPos = pos;
+        pos--;
     }
 
     public void goRight(){
-        tape.add(null);
         pos++;
     }
 
     public String getOutputString(){
         String str = "";
         int count = 0;
-        for(int i = 0; i< tape.size(); i++){
-            char current = tape.removeFirst();
+        int i = startPos;
+        for(int j = 0; j< tape.size(); j++){
+            char current = tape.get(i);
             str += current;
             
             if (current == '1') count++;
