@@ -12,13 +12,17 @@ public class Tape{
         } 
     }
 
-    public void goLeft(){
+    public void read(){
+        tape.get(pos);
+    }
+
+    public void moveLeft(){
         if (pos == 0)
             startPos = pos;
         pos--;
     }
 
-    public void goRight(){
+    public void moveRight(){
         pos++;
     }
 
