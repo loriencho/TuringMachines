@@ -1,9 +1,13 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 public class TuringMachine {
     public static void main(String[] args) {
-        ArrayList<State> states = new ArrayList<State>();
-        states.add(
-            new State("s0", new Transition[0], true));
+        HashMap<String, State> states = new HashMap<String, State>();
+
+        Transition t1 = new Transition('0', '0', "s1", '0', 'R');
+        String name = "s0";
+        // CREATE STATE
+        states.put("s0", state);
+
         String input = "";
         StateMachine stateMachine =  new StateMachine();
         Tape tape = new Tape(input);
@@ -18,3 +22,5 @@ public class TuringMachine {
         tape.getOutputString();
     }    
 }
+
+

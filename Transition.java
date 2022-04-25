@@ -1,11 +1,11 @@
 public class Transition {
     private char input;
     private char tapeSymbol;
-    private State nextState;
+    private String nextState;
     private char writeChar;
     private char direction;
 
-    public Transition(char input, char tapeSymbol, State nextState, char writeChar, char direction){
+    public Transition(char input, char tapeSymbol, String nextState, char writeChar, char direction){
         this.input = input;
         this.tapeSymbol = tapeSymbol;
         this.nextState = nextState;
@@ -21,7 +21,7 @@ public class Transition {
         return tapeSymbol;
     }
 
-    public State getNextState() {
+    public String getNextState() {
         return nextState;
     }
 

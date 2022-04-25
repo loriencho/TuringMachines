@@ -1,11 +1,17 @@
+import java.util.HashMap;
 public class StateMachine {
     private State currentState; 
-    private State[] states; 
+    private HashMap<String, State> states; 
 
     public State getCurrentState() {
         return currentState; 
     }
 
+    public void addState(String name, State state){
+        states.put(name, state);
+    }
+
+    public State getState()
     public char nextStep(char input){
         Transition transition = nextTransition(input);
         currentState = nextState(transition);
