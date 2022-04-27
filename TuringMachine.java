@@ -8,16 +8,32 @@ public class TuringMachine {
     public static void main(String[] args) throws IOException{
 
         // file input STILL WIP!
-        String file = "tm1.txt";
-        ArrayList<String> lines = new ArrayList<String>();
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        String line;
-        while((line = reader.readLine()) != null){
-            lines.add(line);}
 
-        int i = 0;
+        // //file--> String list
+        // String file = "tm1.txt";
+        // ArrayList<String> lines = new ArrayList<String>();
+        // BufferedReader reader = new BufferedReader(new FileReader(file));
+        // String line;
+        // while((line = reader.readLine()) != null){
+        //     lines.add(line);}
 
-        reader.close();
+        // // Parse lines
+        // String input = lines.get(0);
+        // int num_states = Integer.parseInt(lines.get(1));
+        // int i = 2;
+        // while (i < num_states){
+        //     line = lines.get(i);
+        //     String[] s = line.split(" ");
+        //     String name = s[0];
+        //     int num_transitions = Integer.parseInt(s[1]);
+        //     // Transition[] transitions = Transition[num_transitions];
+        //     if(num_transitions > 0)
+
+        //     State s = new State(name, )
+        //     i++
+        // }
+
+        // reader.close();
 
         // hardcoded machine - works fine
         HashMap<String, State> states = new HashMap<String, State>();
