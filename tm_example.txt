@@ -1,0 +1,8 @@
+input_string
+name_of_initial_state
+number_of_states
+[state_name number_of_transitions
+[tape_symbol next_state write_symbol direction]]
+END EXAMPLE
+
+The [] indicates 0 or more as needed 

@@ -3,8 +3,8 @@ public class StateMachine {
     private State currentState; 
     private HashMap<String, State> states; 
 
-    public StateMachine(State currentState, HashMap<String, State> states){
-        this.currentState = currentState;
+    public StateMachine(String currentState, HashMap<String, State> states){
+        this.currentState = states.get(currentState);
         this.states = states;
     }
 

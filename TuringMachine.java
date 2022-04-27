@@ -6,48 +6,58 @@ import java.io.IOException;
 public class TuringMachine {
 
     public static void main(String[] args) throws IOException{
-
-        // file input STILL WIP!
-
-        // //file--> String list
-        // String file = "tm1.txt";
-        // ArrayList<String> lines = new ArrayList<String>();
-        // BufferedReader reader = new BufferedReader(new FileReader(file));
-        // String line;
-        // while((line = reader.readLine()) != null){
-        //     lines.add(line);}
-
-        // // Parse lines
-        // String input = lines.get(0);
-        // int num_states = Integer.parseInt(lines.get(1));
-        // int i = 2;
-        // while (i < num_states){
-        //     line = lines.get(i);
-        //     String[] s = line.split(" ");
-        //     String name = s[0];
-        //     int num_transitions = Integer.parseInt(s[1]);
-        //     // Transition[] transitions = Transition[num_transitions];
-        //     if(num_transitions > 0)
-
-        //     State s = new State(name, )
-        //     i++
-        // }
-
-        // reader.close();
-
-        // hardcoded machine - works fine
         HashMap<String, State> states = new HashMap<String, State>();
-        Transition[] t1 = {
-            new Transition('0', "s1", '0', 'R')};
-        State s0 = new State("s0", t1, false);
-        states.put("s0", s0);
+
+        // Get File Input
+
+        //file--> String list
+        String file = "tm1.txt";
+        ArrayList<String> lines = new ArrayList<String>();
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String line;
+        while((line = reader.readLine()) != null){
+            lines.add(line);}
 
 
-        Transition[] t2 = {};
-        State s1 = new State("s1", t2, true);
-        states.put("s1", s1);
-        String input = "00";
-        StateMachine stateMachine =  new StateMachine(s0, states);
+        // Parse Lines
+        // initial guaranteed lines of information
+        String input = lines.get(0);
+        String initial_state = lines.get(1);
+        int num_states = Integer.parseInt(lines.get(2));
+        int line_pos = 3;
+
+        //repeat for number of states
+        for (int j=0; j < num_states; j++){
+            line = lines.get(line_pos);
+            line_pos++;
+
+            // get information for state
+            String[] line_parts = line.split(" ");
+            String state_name = line_parts[0];
+            int num_transitions = Integer.parseInt(line_parts[1]);
+            
+            
+            Transition[] transitions = new Transition[num_transitions];
+            // parse through each transition for state
+            if(num_transitions > 0){
+                for(int i = 0; i < transitions.length; i++){
+                    line = lines.get(line_pos);
+                    line_pos++;
+
+                    line_parts = line.split(" ");
+                    transitions[i] = new Transition(line_parts[0].charAt(0), line_parts[1],line_parts[0].charAt(0), line_parts[2].charAt(0));
+                }
+            }
+
+            // create state, add to hashmap
+            State state = new State(state_name, transitions, (num_transitions == 0)? true : false);
+            states.put(state_name, state);
+        }
+
+        reader.close();
+
+        // create statemachine, tape
+        StateMachine stateMachine =  new StateMachine(initial_state, states);
         Tape tape = new Tape(input);
 
         // run machine
