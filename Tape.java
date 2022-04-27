@@ -18,6 +18,10 @@ public class Tape{
         return tape.get(pos);
     }
 
+    public char write(char ch){
+        return tape.put(pos, ch);
+    }
+
     public void moveLeft(){
         if (pos == 0)
             startPos = pos;
@@ -28,6 +32,9 @@ public class Tape{
         pos++;
     }
 
+    public String toString(){
+        return tape.toString();
+    }
     public String getOutputString(){
         String str = "";
         int count = 0;
@@ -35,11 +42,11 @@ public class Tape{
         for(int j = 0; j< tape.size(); j++){
             char current = tape.get(i);
             str += current;
-            
             if (current == '1') count++;
+            i++;
         }
 
-        String output = "Final Tape: " + str + "\n # of 1s: " + count;
+        String output = "Final Tape: " + str + "\n# of 1s: " + count;
         return output;
     }
 }

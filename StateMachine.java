@@ -22,14 +22,15 @@ public class StateMachine {
         return states.get(name);
     }
 
-    public char nextStep(char input){
+    public void nextStep(char input){
         Transition transition = nextTransition(input);
         currentState = nextState(transition);
-        return transition.getDirection();
     }
 
-    private Transition nextTransition(char input) {
+    public Transition nextTransition(char input) {
         Transition[] currentTransitions = currentState.getTransitions();
+        
+        // find transition that matches input character
         Transition nextTransition = null;
         for (int i = 0; i < currentTransitions.length; i++){
             if (input == currentTransitions[i].getTapeSymbol())
@@ -38,13 +39,7 @@ public class StateMachine {
         return nextTransition;
     }
 
-    private State nextState(Transition transition){
-        if (transition == null){
-            currentState.setTerminalState(true);
-            return currentState;
-        }
-        else { 
-            return getState(transition.getNextState());
-        }
+    public State nextState(Transition transition){
+        return getState(transition.getNextState());
     }
 }
