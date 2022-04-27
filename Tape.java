@@ -1,6 +1,6 @@
 import java.util.HashMap;
 public class Tape{
-    public HashMap<Integer, Character> tape;
+    private HashMap<Integer, Character> tape;
     private int pos = 0;
     private int startPos = 0;
 
@@ -10,6 +10,8 @@ public class Tape{
             tape.put(pos, ch);
             pos++;
         } 
+        pos = 0;
+        this.tape = tape;
     }
 
     public char read(){

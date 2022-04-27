@@ -3,6 +3,11 @@ public class StateMachine {
     private State currentState; 
     private HashMap<String, State> states; 
 
+    public StateMachine(State currentState, HashMap<String, State> states){
+        this.currentState = currentState;
+        this.states = states;
+    }
+
     public State getCurrentState() {
         return currentState; 
     }
@@ -11,7 +16,12 @@ public class StateMachine {
         states.put(name, state);
     }
 
-    public State getState()
+    public State getState(String name){
+        if (name == null)
+            return null; 
+        return states.get(name);
+    }
+
     public char nextStep(char input){
         Transition transition = nextTransition(input);
         currentState = nextState(transition);
@@ -22,7 +32,7 @@ public class StateMachine {
         Transition[] currentTransitions = currentState.getTransitions();
         Transition nextTransition = null;
         for (int i = 0; i < currentTransitions.length; i++){
-            if (input == currentTransitions[i].getInput())
+            if (input == currentTransitions[i].getTapeSymbol())
                 nextTransition = currentTransitions[i];
         }
         return nextTransition;
@@ -34,8 +44,7 @@ public class StateMachine {
             return currentState;
         }
         else { 
-            return transition.getNextState();
+            return getState(transition.getNextState());
         }
     }
-
 }

@@ -24,3 +24,4 @@ public class State{
     public void setTerminalState(boolean isTerminal) {
         isTerminalState = isTerminal;
     }
+}
