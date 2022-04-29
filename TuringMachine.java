@@ -11,7 +11,7 @@ public class TuringMachine {
         // Get File Input
 
         //file--> String list
-        String file = "tm1.txt";
+        String file = "tm2.txt";
         ArrayList<String> lines = new ArrayList<String>();
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
@@ -64,8 +64,19 @@ public class TuringMachine {
 
         // run machine
         while (!stateMachine.getCurrentState().isTerminalState()){
-            char read = tape.read();
-            Transition transition = stateMachine.nextTransition(read);
+            char read;
+
+            if (tape.getEndPos() < tape.getPos()) {
+                read = '$';
+            }
+            else if (tape.getStartPos() > tape.getPos()){
+                read = '$';
+            }
+            else {
+                read = tape.read();
+            }
+
+            Transition transition = stateMachine.nextTransition(read, tape);
         
             if (transition == null) // no transition found
                 break;
@@ -73,7 +84,7 @@ public class TuringMachine {
             tape.write(transition.getWriteChar());
 
             //move 
-            stateMachine.nextStep(read); // change current state in statemachine
+            stateMachine.nextStep(read, tape); // change current state in statemachine
             if (transition.getDirection() == 'R'){ //move tape
                 tape.moveRight();}
             else {
@@ -81,6 +92,7 @@ public class TuringMachine {
         }
 
         System.out.println(tape.getOutputString()); //end
+
 
     }    
 }

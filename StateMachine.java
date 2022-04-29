@@ -22,21 +22,28 @@ public class StateMachine {
         return states.get(name);
     }
 
-    public void nextStep(char input){
-        Transition transition = nextTransition(input);
+    public void nextStep(char input, Tape tape){
+        Transition transition = nextTransition(input, tape);
         currentState = nextState(transition);
     }
 
-    public Transition nextTransition(char input) {
+    public Transition nextTransition(char input, Tape tape) {
         Transition[] currentTransitions = currentState.getTransitions();
-        
+
         // find transition that matches input character
-        Transition nextTransition = null;
         for (int i = 0; i < currentTransitions.length; i++){
-            if (input == currentTransitions[i].getTapeSymbol())
-                nextTransition = currentTransitions[i];
+            if (input == currentTransitions[i].getTapeSymbol()){
+                if(input == '$' 
+                    && currentTransitions[i].getDirection() == 'R') {
+                        return currentTransitions[i];
+                    }
+                else if(input == '$' 
+                    && currentTransitions[i].getDirection() == 'L') { 
+                    return currentTransitions[i];
+                }
+                return currentTransitions[i];}
         }
-        return nextTransition;
+        return null;
     }
 
     public State nextState(Transition transition){

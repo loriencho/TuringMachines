@@ -2,7 +2,7 @@
 s0
 2
 s0 3
-1 s0 1 R
-0 s0 1 R
-null s0 null R
+1 s0 1 L
+0 s0 1 L
+$ s1 $ R
 s1 0 
