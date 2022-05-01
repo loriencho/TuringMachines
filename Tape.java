@@ -61,7 +61,7 @@ public class Tape{
             char current = tape.get(j);
             str += current;
         }
-        String output = "Final Tape: " + str + "\n# of 1s: " + count;
+        String output = "Final Tape: " + str + "\n# of 1s: " + count1s();
         return output;
     }
 

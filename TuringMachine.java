@@ -11,7 +11,7 @@ public class TuringMachine {
         // Get File Input
 
         //file--> String list
-        String file = "tm3s.txt";
+        String file = "tm2s4s.txt";
         ArrayList<String> lines = new ArrayList<String>();
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
@@ -78,8 +78,10 @@ public class TuringMachine {
 
             Transition transition = stateMachine.nextTransition(read, tape);
         
-            if (transition == null) // no transition found
+            if (transition == null){ // no transition found
+                System.out.println("No transition found from state " + stateMachine.getCurrentState().getName() + " with input " + read + " at position " + tape.getPos());
                 break;
+            }
 
             tape.write(transition.getWriteChar());
 
@@ -89,6 +91,9 @@ public class TuringMachine {
                 tape.moveRight();}
             else {
                 tape.moveLeft();}
+
+
+
         }
 
         System.out.println(tape.getOutputString()); //end
