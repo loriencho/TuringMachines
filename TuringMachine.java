@@ -11,7 +11,7 @@ public class TuringMachine {
         // Get File Input
 
         //file--> String list
-        String file = "tm2.txt";
+        String file = "tm3s.txt";
         ArrayList<String> lines = new ArrayList<String>();
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
